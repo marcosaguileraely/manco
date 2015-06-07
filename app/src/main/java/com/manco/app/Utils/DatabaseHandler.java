@@ -1,15 +1,21 @@
 package com.manco.app.Utils;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.manco.app.Model.Equipos;
+
+import java.util.ArrayList;
 
 /**
  * Created by marcosantonioaguilerely on 6/5/15.
  */
 
-public class DatabaseHandlerEquipos extends SQLiteOpenHelper {
+public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String LOGTAG              = "EXPLOREDB";
     private static final int DATABASE_VERSION       = 1;
@@ -40,7 +46,7 @@ public class DatabaseHandlerEquipos extends SQLiteOpenHelper {
     private static final String KEY_CREADO          = "creado";
     private static final String KEY_ACTUALIZADO     = "actualizado";
 
-    //Usuarios Table Columns names
+    // Usuarios Table Columns names
     private static final String KEY_ID_USR          = "id";
     private static final String KEY_NOMBRES_USR     = "nombres";
     private static final String KEY_APELLIDOS_USR   = "apellidos";
@@ -50,7 +56,7 @@ public class DatabaseHandlerEquipos extends SQLiteOpenHelper {
     private static final String KEY_CLAVE_USR       = "clave";
 
 
-    public DatabaseHandlerEquipos(Context context){
+    public DatabaseHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         Log.i(LOGTAG, "Proceso db");
     }
@@ -111,4 +117,64 @@ public class DatabaseHandlerEquipos extends SQLiteOpenHelper {
             // Create tables again
             onCreate(db);
     }
+
+    /*Equipos CRUD*/
+
+    // metodo agregar
+    public void agregarEquipos(Equipos equipos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, equipos.getNombre());
+        values.put(KEY_DESCRIP, equipos.getDescripcion());
+
+        db.insert(TABLE_EQUIPOS, null, values);
+        db.close();
+    }
+
+    // metodo borrar equipo
+    public void borrarEquipos(){
+
+    }
+
+    // metodo actualizar equipo
+    public void actualizarEquipos(){
+
+    }
+
+    // metodo listar equipo
+    public ArrayList<Equipos> listarEquipos(){
+        int id_equipo;
+        String nombre, descripcion;
+
+        ArrayList<Equipos> items = new ArrayList<Equipos>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPOS;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToNext()) {
+            do {
+                id_equipo = cursor.getInt(0);
+                nombre = cursor.getString(1);
+                descripcion = cursor.getString(2);
+
+                items.add(new Equipos(id_equipo, nombre, descripcion));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return items;
+    }
+
+    // metodo contar equipos
+    public void totalEquipos(){
+
+    }
+
+    /* ---- END Equipos --- */
+
+
+
 }
