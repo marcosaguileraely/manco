@@ -133,8 +133,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // metodo borrar equipo
-    public void borrarEquipos(){
-
+    public void borrarEquipos(long id_equipo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.i(LOGTAG, "eliminar equipo #"+id_equipo);
+        db.delete(TABLE_EQUIPOS, KEY_ID + " = ?",
+                new String[]{
+                        String.valueOf(id_equipo)
+                });
+        Log.i(LOGTAG, "equipo #" + id_equipo+ " eliminado");
+        db.close();
     }
 
     // metodo actualizar equipo
@@ -149,7 +156,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<Equipos> items = new ArrayList<Equipos>();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPOS;
+        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPOS + " ORDER BY id desc";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -167,12 +174,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return items;
     }
-
-    // metodo contar equipos
-    public void totalEquipos(){
-
-    }
-
     /* ---- END Equipos --- */
 
 

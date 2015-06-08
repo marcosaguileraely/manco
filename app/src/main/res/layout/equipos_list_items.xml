@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:focusableInTouchMode="false">
 
 
     <LinearLayout
@@ -11,7 +12,9 @@
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.08"
-        android:background="#B8ADA5">
+        android:background="#B8ADA5"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
 
         <LinearLayout
             android:orientation="vertical"
@@ -19,7 +22,9 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center|center_vertical|center_horizontal"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -31,7 +36,9 @@
                 android:gravity="center|center_vertical|center_horizontal"
                 android:background="#CB973F"
                 android:textSize="25dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -40,7 +47,9 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -49,7 +58,9 @@
                 android:text="TITULO"
                 android:id="@+id/nombre"
                 android:textSize="18dp"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -59,7 +70,9 @@
                 android:id="@+id/descripcion"
                 android:autoText="true"
                 android:textColor="#000000"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

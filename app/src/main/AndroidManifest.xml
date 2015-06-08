@@ -20,6 +20,11 @@
         <activity
             android:name=".EquiposActivity"
             android:label="@string/title_activity_equipos"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".EquiposActivity_Crear"
+            android:label="@string/title_activity_equipos_activity__crear"
             android:screenOrientation="portrait">
         </activity>
     </application>

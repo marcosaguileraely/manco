@@ -54,4 +54,27 @@ public class EquiposAdapter extends ArrayAdapter<Equipos>{
         return rowView;
         //return super.getView(position, convertView, parent);
     }
+
+    public long getItemId(int position) {
+        if (equiposArrayList != null) {
+            return equiposArrayList.get(position).getId_equipo();
+        }
+        return 0;
+    }
+
+    public String getName(int position){
+        if (equiposArrayList != null) {
+            return equiposArrayList.get(position).getNombre();
+        }
+        return "ok name";
+    }
+
+    public String getDescription(int position){
+        if (equiposArrayList != null) {
+            return equiposArrayList.get(position).getDescripcion();
+        }
+        return "ok description";
+    }
+
+
 }
