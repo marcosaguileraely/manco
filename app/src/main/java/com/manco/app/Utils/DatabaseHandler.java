@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.manco.app.Model.Equipos;
+import com.manco.app.Model.Termograma;
 
 import java.util.ArrayList;
 
@@ -40,9 +41,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Termogramas Table Columns names
     private static final String KEY_ID_TERM         = "id";
     private static final String KEY_UBICACION_TERM  = "ubicacion";
-    private static final String KEY_FOTO_CAMARA_    = "foto_camara";
+    private static final String KEY_FOTO_CAMARA     = "foto_camara";
     private static final String KEY_FOTO_TERM       = "foto_termica";
     private static final String KEY_CONDICION_TERM  = "condicion_termica";
+    private static final String KEY_IDEQUIPO_TERM   = "id_equipo";
+    private static final String KEY_IDINSTAL_TERM   = "id_instalacion";
+    private static final String KEY_IDUSR_TERM      = "id_usuario";
     private static final String KEY_CREADO          = "creado";
     private static final String KEY_ACTUALIZADO     = "actualizado";
 
@@ -81,9 +85,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             String CREATE_TERMOGRAMA_TABLE = "CREATE TABLE "+TABLE_TERMOGRAMA+"("
                     +KEY_ID_TERM+" INTEGER PRIMARY KEY AUTOINCREMENT,"
                     +KEY_UBICACION_TERM+" TEXT,"
-                    +KEY_FOTO_CAMARA_+" TEXT,"
+                    +KEY_FOTO_CAMARA+" TEXT,"
                     +KEY_FOTO_TERM+" TEXT,"
                     +KEY_CONDICION_TERM+" TEXT,"
+                    +KEY_IDEQUIPO_TERM+" INT,"
+                    +KEY_IDINSTAL_TERM+" INT,"
+                    +KEY_IDUSR_TERM+" INT,"
                     +KEY_CREADO+" DATETIME,"
                     +KEY_ACTUALIZADO+" DATETIME"+")";
 
@@ -174,6 +181,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return items;
     }
+    /* ---- END Equipos --- */
+
+    /********************/
+    /* Termogramas CRUD */
+
+    // metodo agregar termogramas
+    public void agregarTermogramas(Termograma termograma){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_UBICACION_TERM, termograma.getUbicación());
+        values.put(KEY_FOTO_CAMARA, termograma.getFoto_camara());
+        values.put(KEY_FOTO_TERM, termograma.getFoto_termograma());
+        values.put(KEY_CONDICION_TERM, termograma.getCondicion_termica());
+        values.put(KEY_IDEQUIPO_TERM, termograma.getId_equipo());
+        values.put(KEY_IDINSTAL_TERM, termograma.getId_instalacion());
+        values.put(KEY_IDUSR_TERM, termograma.getId_usuario());
+        values.put(KEY_CREADO, "2015-07-08");
+        values.put(KEY_ACTUALIZADO, "2015-07-08");
+
+        db.insert(TABLE_TERMOGRAMA, null, values);
+        db.close();
+    }
+
     /* ---- END Equipos --- */
 
 

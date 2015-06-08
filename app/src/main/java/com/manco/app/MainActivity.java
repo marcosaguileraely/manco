@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
 
             Log.d("Creating DB: ", "Db created... check it!");
         }else{
-            //noting to-do
+            //nothing to-do
         }
 
         equipos.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +54,15 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(iraEquipos);
             }
         });
+
+        termografica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iraTermografia = new Intent(MainActivity.this, TermogramaActivity_Crear.class);
+                startActivity(iraTermografia);
+            }
+        });
+
     }
 
     public Boolean dbExists(){

@@ -25,7 +25,17 @@
         <activity
             android:name=".EquiposActivity_Crear"
             android:label="@string/title_activity_equipos_activity__crear"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".TermogramaActivity"
+            android:label="@string/title_activity_termograma"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".TermogramaActivity_Crear"
+            android:label="@string/title_activity_termograma_activity__crear"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

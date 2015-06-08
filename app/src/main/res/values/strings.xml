@@ -4,5 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_equipos">Listado Equipos</string>
-    <string name="title_activity_equipos_activity__crear">Crear Equipos</string>
+    <string name="title_activity_equipos_activity__crear">Formulario Equipos</string>
+    <string name="title_activity_termograma">Listado Termograma</string>
+    <string name="title_activity_termograma_activity__crear">Formulario Termogramas</string>
 </resources>
