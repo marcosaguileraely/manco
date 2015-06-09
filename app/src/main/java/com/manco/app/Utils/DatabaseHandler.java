@@ -10,7 +10,9 @@ import android.util.Log;
 import com.manco.app.Model.Equipos;
 import com.manco.app.Model.Termograma;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by marcosantonioaguilerely on 6/5/15.
@@ -188,6 +190,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // metodo agregar termogramas
     public void agregarTermogramas(Termograma termograma){
+        String timeStamp  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -198,8 +201,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_IDEQUIPO_TERM, termograma.getId_equipo());
         values.put(KEY_IDINSTAL_TERM, termograma.getId_instalacion());
         values.put(KEY_IDUSR_TERM, termograma.getId_usuario());
-        values.put(KEY_CREADO, "2015-07-08");
-        values.put(KEY_ACTUALIZADO, "2015-07-08");
+        values.put(KEY_CREADO, timeStamp);
+        values.put(KEY_ACTUALIZADO, timeStamp);
 
         db.insert(TABLE_TERMOGRAMA, null, values);
         db.close();
