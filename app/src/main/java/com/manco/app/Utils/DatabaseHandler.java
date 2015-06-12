@@ -13,6 +13,7 @@ import com.manco.app.Model.Termograma;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by marcosantonioaguilerely on 6/5/15.
@@ -90,7 +91,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     +KEY_FOTO_CAMARA+" TEXT,"
                     +KEY_FOTO_TERM+" TEXT,"
                     +KEY_CONDICION_TERM+" TEXT,"
-                    +KEY_IDEQUIPO_TERM+" INT,"
+                    +KEY_IDEQUIPO_TERM+" TEXT,"
                     +KEY_IDINSTAL_TERM+" INT,"
                     +KEY_IDUSR_TERM+" INT,"
                     +KEY_CREADO+" DATETIME,"
@@ -144,12 +145,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // metodo borrar equipo
     public void borrarEquipos(long id_equipo){
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.i(LOGTAG, "eliminar equipo #"+id_equipo);
+        Log.i(LOGTAG, "eliminar equipo #" + id_equipo);
         db.delete(TABLE_EQUIPOS, KEY_ID + " = ?",
                 new String[]{
                         String.valueOf(id_equipo)
                 });
-        Log.i(LOGTAG, "equipo #" + id_equipo+ " eliminado");
+        Log.i(LOGTAG, "equipo #" + id_equipo + " eliminado");
         db.close();
     }
 
@@ -165,7 +166,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<Equipos> items = new ArrayList<Equipos>();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPOS + " ORDER BY id desc";
+        String selectQuery = "SELECT * FROM " + TABLE_EQUIPOS + " ORDER BY id desc";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -183,6 +184,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return items;
     }
+
+    // metodo listar equipo para Spinner
+    public List<String> listarEquiposSpinner(){
+        int id_equipo;
+        String nombre, descripcion;
+
+        List<String> items = new ArrayList<String>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_EQUIPOS + " ORDER BY id asc";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToNext()) {
+            do {
+               // id_equipo = cursor.getInt(0);
+               // nombre = cursor.getString(1);
+               // descripcion = cursor.getString(2);
+
+                items.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        Log.d(">>> ", ">>>>" + items);
+        return items;
+    }
+
     /* ---- END Equipos --- */
 
     /********************/
@@ -198,7 +227,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FOTO_CAMARA, termograma.getFoto_camara());
         values.put(KEY_FOTO_TERM, termograma.getFoto_termograma());
         values.put(KEY_CONDICION_TERM, termograma.getCondicion_termica());
-        values.put(KEY_IDEQUIPO_TERM, termograma.getId_equipo());
+        values.put(KEY_IDEQUIPO_TERM, termograma.getEquipo());
         values.put(KEY_IDINSTAL_TERM, termograma.getId_instalacion());
         values.put(KEY_IDUSR_TERM, termograma.getId_usuario());
         values.put(KEY_CREADO, timeStamp);

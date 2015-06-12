@@ -12,20 +12,19 @@ public class Termograma {
     private String  foto_camara;
     private String  foto_termograma;
     private String  condicion_termica; //listado simple que se captura desde un listView
-    private int     id_equipo;         //esta es una tabla o listado que trae el listado de equipos
+    private String  equipo;            //esta es una tabla o listado que trae el listado de equipos
     private int     id_instalacion;
     private int     id_usuario;
     private Date    creado;
     private Date    actualizado;
 
-
-    public Termograma(int id_termograma, String ubicación, String foto_camara, String foto_termograma, String condicion_termica, int id_equipo, int id_instalacion, int id_usuario) {
+    public Termograma(int id_termograma, String ubicación, String foto_camara, String foto_termograma, String condicion_termica, String equipo, int id_instalacion, int id_usuario) {
         this.id_termograma = id_termograma;
         this.ubicación = ubicación;
         this.foto_camara = foto_camara;
         this.foto_termograma = foto_termograma;
         this.condicion_termica = condicion_termica;
-        this.id_equipo = id_equipo;
+        this.equipo = equipo;
         this.id_instalacion = id_instalacion;
         this.id_usuario = id_usuario;
     }
@@ -70,12 +69,12 @@ public class Termograma {
         this.condicion_termica = condicion_termica;
     }
 
-    public int getId_equipo() {
-        return id_equipo;
+    public String getEquipo() {
+        return equipo;
     }
 
-    public void setId_equipo(int id_equipo) {
-        this.id_equipo = id_equipo;
+    public void setEquipo(String equipo) {
+        this.equipo = equipo;
     }
 
     public int getId_instalacion() {

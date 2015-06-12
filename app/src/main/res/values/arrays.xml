@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name= "condiciones">
+        <item>Normal</item>
+        <item>Importante</item>
+        <item>Crítico</item>
+        <item>Urgente</item>
+    </string-array>
+</resources>
