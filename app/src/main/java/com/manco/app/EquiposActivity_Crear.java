@@ -106,6 +106,10 @@ public class EquiposActivity_Crear extends ActionBarActivity {
                 showDeleteDialog();
             }
         });
+
+
+
+
     }
 
     //Confirmar eliminacion

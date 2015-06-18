@@ -62,6 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_USUARIO_USR     = "usuario";
     private static final String KEY_CLAVE_USR       = "clave";
 
+    String timeStamp  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     public DatabaseHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -187,9 +188,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // metodo listar equipo para Spinner
     public List<String> listarEquiposSpinner(){
-        int id_equipo;
-        String nombre, descripcion;
-
         List<String> items = new ArrayList<String>();
 
         String selectQuery = "SELECT * FROM " + TABLE_EQUIPOS + " ORDER BY id asc";
@@ -198,10 +196,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToNext()) {
             do {
-               // id_equipo = cursor.getInt(0);
-               // nombre = cursor.getString(1);
-               // descripcion = cursor.getString(2);
-
                 items.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
@@ -211,7 +205,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.d(">>> ", ">>>>" + items);
         return items;
     }
-
     /* ---- END Equipos --- */
 
     /********************/
@@ -219,9 +212,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // metodo agregar termogramas
     public void agregarTermogramas(Termograma termograma){
-        String timeStamp  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(KEY_UBICACION_TERM, termograma.getUbicación());
         values.put(KEY_FOTO_CAMARA, termograma.getFoto_camara());
@@ -237,8 +228,76 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    // metodo listar Termogramas
+    public ArrayList<Termograma> listarTermogramas(){
+        int id_termograma;
+        String ubicacion, condicion, equipo, foto_camara, foto_termica, instalacion, usuario;
+
+        ArrayList<Termograma> items = new ArrayList<Termograma>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_TERMOGRAMA + " ORDER BY id desc";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToNext()) {
+            do {
+                id_termograma = cursor.getInt(0);
+                ubicacion = cursor.getString(1);
+                foto_termica =  cursor.getString(2);
+                condicion = cursor.getString(3);
+                equipo = cursor.getString(4);
+                foto_camara = cursor.getString(5);
+
+                items.add(new Termograma(id_termograma, ubicacion, foto_termica, condicion, equipo, foto_camara, 1, 1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return items;
+    }
+
+    // metodo borrar termograma
+    public void borrarTermograma(long id_termograma){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.i(LOGTAG, "eliminar equipo #" + id_termograma);
+        db.delete(TABLE_TERMOGRAMA, KEY_ID_TERM + " = ?",
+                new String[]{
+                        String.valueOf(id_termograma)
+                });
+        Log.i(LOGTAG, "termograma #" + id_termograma + " eliminado");
+        db.close();
+    }
+
+    // metodo actualizar termograma
+    public int actualizarTermograma(int id_termograma, String ubicación, String foto_camara, String foto_termograma, String condicion_termica, String equipo, int id_instalacion, int id_usuario){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID_TERM, id_termograma);
+        values.put(KEY_UBICACION_TERM, ubicación);
+        values.put(KEY_FOTO_CAMARA, foto_camara);
+        values.put(KEY_FOTO_TERM, foto_termograma);
+        values.put(KEY_CONDICION_TERM, condicion_termica);
+        values.put(KEY_IDEQUIPO_TERM, equipo);
+        values.put(KEY_IDINSTAL_TERM, id_instalacion);
+        values.put(KEY_IDUSR_TERM, id_usuario);
+        values.put(KEY_ACTUALIZADO, timeStamp);
+
+        Log.d("-->", "--->" + id_termograma);
+        Log.d("-->", "--->" + ubicación);
+        Log.d("-->", "--->" + foto_camara);
+        Log.d("-->", "--->" + foto_termograma);
+        Log.d("-->", "--->" + condicion_termica);
+        Log.d("-->", "--->" + equipo);
+        Log.d("-->", "--->" + id_instalacion);
+        Log.d("-->", "--->" + id_usuario);
+
+        String where = "id=?";
+        String[] whereArgs = new String[] {String.valueOf(id_termograma)};
+
+        return db.update(TABLE_TERMOGRAMA, values, where, whereArgs);
+    }
+
     /* ---- END Equipos --- */
-
-
-
 }

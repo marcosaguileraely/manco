@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
         termografica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iraTermografia = new Intent(MainActivity.this, TermogramaActivity_Crear.class);
+                Intent iraTermografia = new Intent(MainActivity.this, TermogramaActivity.class);
                 startActivity(iraTermografia);
             }
         });
