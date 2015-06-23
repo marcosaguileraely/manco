@@ -15,12 +15,20 @@
         android:layout_alignParentTop="true"
         android:gravity="center|center_vertical|center_horizontal">
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Ubicación"
+            android:id="@+id/textView2"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ubicacion"
-            android:layout_gravity="center_horizontal"
-            android:hint="Ubicación" />
+            android:layout_gravity="center_horizontal" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -34,42 +42,154 @@
                 android:id="@+id/foto_camara"
                 android:layout_gravity="right"
                 android:hint="Foto camara"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="10dp"
+                android:enabled="false"/>
 
             <Button
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Camara"
+
+                android:drawableLeft="@android:drawable/ic_menu_camera"
                 android:id="@+id/init_camara_butt"
-                android:layout_weight="1" />
+                android:background="#A7102E"
+                android:paddingLeft="10dp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="No. foto térmica"
+            android:id="@+id/textView3"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/foto_termica"
             android:layout_gravity="center_horizontal"
-            android:hint="No. Foto termica" />
+            android:inputType="number" />
 
-        <EditText
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/condicion_termica"
-            android:layout_gravity="center_horizontal"
-            android:hint="Condición termica" />
+            android:layout_gravity="center_horizontal">
 
-        <EditText
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Condición termica"
+                android:id="@+id/textView4"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/condicion_spinner"
+                android:spinnerMode="dialog" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tipo_equipo"
-            android:layout_gravity="center_horizontal"
-            android:hint="Tipo equipo" />
+            android:layout_gravity="center_horizontal">
 
-        <Button
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Equipo"
+                android:id="@+id/textView5"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/equipos_spinner"
+                android:layout_gravity="center_horizontal"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/termo_acciones_gurardar_cancelar">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="Guardar"
+                android:id="@+id/guardar_term_butt"
+                android:background="#A7102E"
+                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:layout_margin="2dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="Cancelar"
+                android:id="@+id/cancelar_termo_butt"
+                android:layout_weight="1"
+                android:background="#A7102E"
+                android:layout_margin="2dp"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:id="@+id/termo_acciones_adicionales">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="Eliminar"
+                android:id="@+id/eliminar_term_butt"
+                android:background="#C2973F"
+                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:layout_margin="2dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="Actualizar"
+                android:id="@+id/actualizar_termo_butt"
+                android:layout_weight="1"
+                android:background="#C2973F"
+                android:layout_margin="2dp"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="Cancelar"
+                android:id="@+id/cancelar2_termo_butt"
+                android:layout_weight="1"
+                android:background="#A7102E"
+                android:layout_margin="2dp"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+
+
+        <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:id="@+id/guardar_term_butt"
+            android:layout_height="fill_parent"
+            android:id="@+id/pic_result"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 

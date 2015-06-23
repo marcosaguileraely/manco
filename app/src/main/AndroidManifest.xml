@@ -37,6 +37,15 @@
             android:label="@string/title_activity_termograma_activity__crear"
             android:screenOrientation="portrait" >
         </activity>
+
+        <provider
+            android:name=".Utils.MyFileContentProvider"
+            android:authorities="com.manco.app"
+            android:enabled="true"
+            android:exported="true" />
+
     </application>
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

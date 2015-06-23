@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="fill_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1"
-    android:focusableInTouchMode="false"
-    android:focusable="false">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:focusable="false"
+    android:focusableInTouchMode="false">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.08"
         android:background="#B8ADA5"
         android:focusable="false"
         android:focusableInTouchMode="false">
@@ -31,14 +30,15 @@
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="1"
-                android:id="@+id/id"
+                android:id="@+id/id_termo"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center|center_vertical|center_horizontal"
-                android:background="#CB973F"
+                android:background="#A7102E"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,30 +49,41 @@
             android:layout_weight="1"
             android:weightSum="1"
             android:focusable="false"
-            android:focusableInTouchMode="false">
+            android:focusableInTouchMode="false"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="TITULO"
-                android:id="@+id/nombre"
+                android:text="Ubicación"
+                android:id="@+id/ubicacion"
                 android:textSize="18dp"
                 android:textColor="#000000"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="descripcion"
-                android:id="@+id/descripcion"
-                android:autoText="true"
-                android:textColor="#000000"
-                android:textSize="14dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Equipo"
+                android:id="@+id/equipo"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Condición"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:id="@+id/condicion_txt" />
+
         </LinearLayout>
     </LinearLayout>
 

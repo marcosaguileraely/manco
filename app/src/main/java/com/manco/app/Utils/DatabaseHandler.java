@@ -10,7 +10,10 @@ import android.util.Log;
 import com.manco.app.Model.Equipos;
 import com.manco.app.Model.Termograma;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by marcosantonioaguilerely on 6/5/15.
@@ -59,6 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_USUARIO_USR     = "usuario";
     private static final String KEY_CLAVE_USR       = "clave";
 
+    String timeStamp  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     public DatabaseHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -88,7 +92,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     +KEY_FOTO_CAMARA+" TEXT,"
                     +KEY_FOTO_TERM+" TEXT,"
                     +KEY_CONDICION_TERM+" TEXT,"
-                    +KEY_IDEQUIPO_TERM+" INT,"
+                    +KEY_IDEQUIPO_TERM+" TEXT,"
                     +KEY_IDINSTAL_TERM+" INT,"
                     +KEY_IDUSR_TERM+" INT,"
                     +KEY_CREADO+" DATETIME,"
@@ -142,12 +146,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // metodo borrar equipo
     public void borrarEquipos(long id_equipo){
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.i(LOGTAG, "eliminar equipo #"+id_equipo);
+        Log.i(LOGTAG, "eliminar equipo #" + id_equipo);
         db.delete(TABLE_EQUIPOS, KEY_ID + " = ?",
                 new String[]{
                         String.valueOf(id_equipo)
                 });
-        Log.i(LOGTAG, "equipo #" + id_equipo+ " eliminado");
+        Log.i(LOGTAG, "equipo #" + id_equipo + " eliminado");
         db.close();
     }
 
@@ -163,7 +167,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<Equipos> items = new ArrayList<Equipos>();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_EQUIPOS + " ORDER BY id desc";
+        String selectQuery = "SELECT * FROM " + TABLE_EQUIPOS + " ORDER BY id desc";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -181,6 +185,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return items;
     }
+
+    // metodo listar equipo para Spinner
+    public List<String> listarEquiposSpinner(){
+        List<String> items = new ArrayList<String>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_EQUIPOS + " ORDER BY id asc";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToNext()) {
+            do {
+                items.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        Log.d(">>> ", ">>>>" + items);
+        return items;
+    }
     /* ---- END Equipos --- */
 
     /********************/
@@ -189,24 +213,91 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // metodo agregar termogramas
     public void agregarTermogramas(Termograma termograma){
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(KEY_UBICACION_TERM, termograma.getUbicación());
         values.put(KEY_FOTO_CAMARA, termograma.getFoto_camara());
         values.put(KEY_FOTO_TERM, termograma.getFoto_termograma());
         values.put(KEY_CONDICION_TERM, termograma.getCondicion_termica());
-        values.put(KEY_IDEQUIPO_TERM, termograma.getId_equipo());
+        values.put(KEY_IDEQUIPO_TERM, termograma.getEquipo());
         values.put(KEY_IDINSTAL_TERM, termograma.getId_instalacion());
         values.put(KEY_IDUSR_TERM, termograma.getId_usuario());
-        values.put(KEY_CREADO, "2015-07-08");
-        values.put(KEY_ACTUALIZADO, "2015-07-08");
+        values.put(KEY_CREADO, timeStamp);
+        values.put(KEY_ACTUALIZADO, timeStamp);
 
         db.insert(TABLE_TERMOGRAMA, null, values);
         db.close();
     }
 
+    // metodo listar Termogramas
+    public ArrayList<Termograma> listarTermogramas(){
+        int id_termograma;
+        String ubicacion, condicion, equipo, foto_camara, foto_termica, instalacion, usuario;
+
+        ArrayList<Termograma> items = new ArrayList<Termograma>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_TERMOGRAMA + " ORDER BY id desc";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToNext()) {
+            do {
+                id_termograma = cursor.getInt(0);
+                ubicacion = cursor.getString(1);
+                foto_termica =  cursor.getString(2);
+                condicion = cursor.getString(3);
+                equipo = cursor.getString(4);
+                foto_camara = cursor.getString(5);
+
+                items.add(new Termograma(id_termograma, ubicacion, foto_termica, condicion, equipo, foto_camara, 1, 1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return items;
+    }
+
+    // metodo borrar termograma
+    public void borrarTermograma(long id_termograma){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.i(LOGTAG, "eliminar equipo #" + id_termograma);
+        db.delete(TABLE_TERMOGRAMA, KEY_ID_TERM + " = ?",
+                new String[]{
+                        String.valueOf(id_termograma)
+                });
+        Log.i(LOGTAG, "termograma #" + id_termograma + " eliminado");
+        db.close();
+    }
+
+    // metodo actualizar termograma
+    public int actualizarTermograma(int id_termograma, String ubicación, String foto_camara, String foto_termograma, String condicion_termica, String equipo, int id_instalacion, int id_usuario){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID_TERM, id_termograma);
+        values.put(KEY_UBICACION_TERM, ubicación);
+        values.put(KEY_FOTO_CAMARA, foto_camara);
+        values.put(KEY_FOTO_TERM, foto_termograma);
+        values.put(KEY_CONDICION_TERM, condicion_termica);
+        values.put(KEY_IDEQUIPO_TERM, equipo);
+        values.put(KEY_IDINSTAL_TERM, id_instalacion);
+        values.put(KEY_IDUSR_TERM, id_usuario);
+        values.put(KEY_ACTUALIZADO, timeStamp);
+
+        Log.d("-->", "--->" + id_termograma);
+        Log.d("-->", "--->" + ubicación);
+        Log.d("-->", "--->" + foto_camara);
+        Log.d("-->", "--->" + foto_termograma);
+        Log.d("-->", "--->" + condicion_termica);
+        Log.d("-->", "--->" + equipo);
+        Log.d("-->", "--->" + id_instalacion);
+        Log.d("-->", "--->" + id_usuario);
+
+        String where = "id=?";
+        String[] whereArgs = new String[] {String.valueOf(id_termograma)};
+
+        return db.update(TABLE_TERMOGRAMA, values, where, whereArgs);
+    }
+
     /* ---- END Equipos --- */
-
-
-
 }
