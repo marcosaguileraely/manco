@@ -21,7 +21,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Ubicación"
             android:id="@+id/textView2"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="match_parent"
@@ -59,9 +60,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="No. foto termica"
+            android:text="No. foto térmica"
             android:id="@+id/textView3"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="match_parent"
@@ -83,7 +85,8 @@
                 android:text="Condición termica"
                 android:id="@+id/textView4"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -105,7 +108,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Equipo"
                 android:id="@+id/textView5"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
             <Spinner
                 android:layout_width="match_parent"
