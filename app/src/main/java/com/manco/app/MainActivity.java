@@ -1,5 +1,6 @@
 package com.manco.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.manco.app.Model.Equipos;
 import com.manco.app.Utils.DatabaseHandler;
@@ -26,6 +28,8 @@ public class MainActivity extends ActionBarActivity {
     Button              equipos;
     Button              termografica;
     Button              usuarios;
+
+    Context             context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,19 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        instalaciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Función no disponible...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        usuarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Función no disponible...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public Boolean dbExists(){

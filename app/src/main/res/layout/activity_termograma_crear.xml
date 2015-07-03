@@ -82,7 +82,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Condición termica"
+                android:text="Condición térmica"
                 android:id="@+id/textView4"
                 android:layout_gravity="center_horizontal"
                 android:textColor="#000000"
@@ -90,7 +90,7 @@
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:id="@+id/condicion_spinner"
                 android:spinnerMode="dialog" />
 
@@ -113,7 +113,7 @@
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:id="@+id/equipos_spinner"
                 android:layout_gravity="center_horizontal"
                 android:spinnerMode="dialog" />

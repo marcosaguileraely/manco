@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.manco.app" >
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -44,8 +46,10 @@
             android:enabled="true"
             android:exported="true" />
 
+        <activity
+            android:name=".UsuariosActivity"
+            android:label="@string/title_activity_usuarios" >
+        </activity>
     </application>
-
-    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

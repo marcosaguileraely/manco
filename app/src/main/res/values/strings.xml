@@ -7,4 +7,5 @@
     <string name="title_activity_equipos_activity__crear">Equipos</string>
     <string name="title_activity_termograma">Listado Termograma</string>
     <string name="title_activity_termograma_activity__crear">Termogramas</string>
+    <string name="title_activity_usuarios">Usuarios</string>
 </resources>

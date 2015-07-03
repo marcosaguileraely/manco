@@ -16,23 +16,23 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:weightSum="1"
-        android:gravity="center_horizontal">
+        android:gravity="center|center_vertical|center_horizontal">
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.27" />
+            android:background="@drawable/logo" />
 
         <TextView android:text="MANCO APP" android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/title"
             android:layout_weight="0.10"
-            android:textSize="22dp"
-            android:background="#A7102E"
-            android:textColor="#FFFFFF" />
+            android:textSize="25dp"
+            android:textColor="#A7102E"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -57,14 +57,25 @@
                     android:layout_height="match_parent"
                     android:text="Instalación"
                     android:id="@+id/instalacion_butt"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_margin="3dp"
+                    android:background="#A7102E"
+                    android:textAlignment="center"
+                    android:gravity="center|center_vertical|center_horizontal"
+                    android:textColor="#ffffff"
+                    android:textSize="22dp" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="Equipos"
                     android:id="@+id/equipos_butt"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_margin="3dp"
+                    android:background="#A7102E"
+                    android:gravity="center|center_vertical|center_horizontal"
+                    android:textColor="#ffffff"
+                    android:textSize="22dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -78,16 +89,27 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Termografía"
-                    android:id="@+id/termo_butt"
-                    android:layout_weight="1" />
+                    android:text="Usuarios"
+                    android:id="@+id/usuarios_butt"
+                    android:layout_weight="1"
+                    android:layout_margin="3dp"
+                    android:background="#A7102E"
+                    android:gravity="center|center_vertical|center_horizontal"
+                    android:textColor="#ffffff"
+                    android:textSize="22dp" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Usuarios"
-                    android:id="@+id/usuarios_butt"
-                    android:layout_weight="1" />
+                    android:text="Termografía"
+                    android:id="@+id/termo_butt"
+                    android:layout_weight="1"
+                    android:layout_margin="3dp"
+                    android:background="#A7102E"
+                    android:gravity="center|center_vertical|center_horizontal"
+                    android:textColor="#ffffff"
+                    android:textSize="22dp" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
